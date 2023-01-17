@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PatientInformationSystem.Models.MedicalHistory>
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Medical History</h2>
+    </div>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Examination History</th>
+                <th>Examination</th>
+                <th>Diagnosis</th>
+                <th>Stage</th>
+                <th class="text-end">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ExaminationHistory</td>
+                <td>@item.Examination</td>
+                <td>@item.DiagnosisName</td>
+                <td>@item.StageName </td>
+                <td class="text-end">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-primary" asp-controller="Note" asp-action="GetAll" asp-route-id="@item.IdMedicalHistory">Add Notes</a>
+                    </div>
+                </td>
+                <td class="text-end">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-primary" asp-action="Update" asp-route-id="@item.IdMedicalHistory">Edit</a>
+                        <a type="button" class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdMedicalHistory">Details</a>
+                        <a type="button" class="btn btn-primary" asp-action="Delete" asp-route-id="@item.IdMedicalHistory">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-6">
+        <a class="btn btn-info" asp-action="Add">Add Diagnosis</a>
+    </div>
+</div>

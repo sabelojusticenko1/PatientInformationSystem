@@ -1,0 +1,71 @@
+﻿@model PatientInformationSystem.Models.Patient
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4>Patient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add" method="post">
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDNumber" class="control-label"></label>
+                <input asp-for="IDNumber" class="form-control" />
+                <span asp-validation-for="IDNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenderType" class="control-label"></label>
+                <select asp-for="GenderId" asp-items="Model.GenderTypeList" class="form-control">
+                    <option value="">----select---</option>
+                </select>
+                <span asp-validation-for="GenderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HospitalName" class="control-label"></label>
+                <select asp-for="HospitalId" asp-items="Model.HospitalNameList" class="form-control">
+                    <option value="">----select---</option>
+                </select>
+                <span asp-validation-for="HospitalId" class="text-danger"></span>
+            </div>
+            @if (TempData["msg"] != null)
+            {
+                <div class="form-group">
+                    @TempData["msg"]
+                </div>
+            }
+            <div class="form-group pt-3">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <a asp-action="GetAll" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

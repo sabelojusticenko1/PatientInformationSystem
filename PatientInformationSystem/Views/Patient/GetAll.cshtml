@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PatientInformationSystem.Models.Patient>
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Patient</h2>
+    </div>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>ID Number</th>
+                <th> Address</th>
+                <th>GenderType</th>
+                <th>HospitalName</th>
+                <th class="text-end">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.Surname</td>
+                <td>@item.Age</td>
+                <td>@item.IDNumber</td>
+                <td>@item.Address</td>
+                <td>@item.GenderType</td>
+                <td>@item.HospitalName </td>
+                <td class="text-end">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-primary" asp-controller="MedicalHistory" asp-action="GetAll" asp-route-id="@item.IdPatient">Medical History</a>
+                    </div>
+                </td>
+                <td class="text-end">
+                    <div class="btn-group" role="group">
+                        <a type="button" class="btn btn-primary" asp-action="Update" asp-route-id="@item.IdPatient">Edit</a>
+                        <a type="button" class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdPatient">Details</a>
+                        <a type="button" class="btn btn-primary" asp-action="Delete" asp-route-id="@item.IdPatient">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-6">
+        <a class="btn btn-info" asp-action="Add">Add Patient</a>
+    </div>
+</div>

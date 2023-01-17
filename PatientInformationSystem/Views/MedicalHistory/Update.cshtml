@@ -1,0 +1,56 @@
+﻿@model PatientInformationSystem.Models.MedicalHistory
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4>Medical History</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update" method="post">
+            <div class="form-group">
+                <label asp-for="ExaminationHistory" class="control-label"></label>
+                <input asp-for="ExaminationHistory" class="form-control" />
+                <span asp-validation-for="ExaminationHistory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Examination" class="control-label"></label>
+                <input asp-for="Examination" class="form-control" />
+                <span asp-validation-for="Examination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiagnosisName" class="control-label"></label>
+                <select asp-for="DiagnosisId" asp-items="Model.DiagnosisNameList" class="form-control">
+                    <option value="">----select---</option>
+                </select>
+                <span asp-validation-for="DiagnosisId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StageName" class="control-label"></label>
+                <select asp-for="StageId" asp-items="Model.StageNameList" class="form-control">
+                    <option value="">----select---</option>
+                </select>
+                <span asp-validation-for="StageId" class="text-danger"></span>
+            </div>
+            @if (TempData["msg"] != null)
+            {
+                <div class="form-group">
+                    @TempData["msg"]
+                </div>
+            }
+            <div class="form-group pt-3">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-action="GetAll" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
